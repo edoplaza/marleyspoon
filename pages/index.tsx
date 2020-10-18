@@ -5,7 +5,7 @@ import client from './api/contentful'
 import styled from '@emotion/styled'
 import { rem } from 'polished'
 
-function Home() {
+const Home = () => {
   async function fetchEntries() {
     const entries = await client.getEntries( {content_type: 'recipe', include: 1})
     if (entries.items) return entries.items

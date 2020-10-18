@@ -5,14 +5,21 @@ import client from '../api/contentful';
 import styled from '@emotion/styled'
 import { rem } from 'polished'
 
-function Recipe() {
+interface TagContent {
+  fields: {
+    name: string
+  }
+}
+interface Tag extends Array<TagContent>{}
+
+const Recipe = () => {
   let router = useRouter();
-  const [counter, setCounter] = useState(0)
-  const [title, setTitle] = useState('')
-  const [tags, setTags] = useState([])
-  const [photo, setPhoto] = useState('')
-  const [description, setDescription] = useState('')
-  const [chef, setChef] = useState('');
+  const [counter, setCounter] = useState<number>(0)
+  const [title, setTitle] = useState<string>('')
+  const [tags, setTags] = useState<Tag>([])
+  const [photo, setPhoto] = useState<string>('')
+  const [description, setDescription] = useState<string>('')
+  const [chef, setChef] = useState<string>('');
 
   async function getRecipe() {
     let value = await router.query.id;
@@ -28,7 +35,7 @@ function Recipe() {
             setTitle(entry.items[0].fields.title)
           }
           if (entry.items[0].fields.tags !== undefined ) {
-            setTags(entry.items[0].fields.tags)
+            setTags(entry.items[0].fields.tags) 
           }
           if (entry.items[0].fields.photo.fields.file.url !== undefined) {
             setPhoto(entry.items[0].fields.photo.fields.file.url)
@@ -71,7 +78,7 @@ function Recipe() {
          
             {tags.length !== 0 && (
               <div className="single-tags">
-                {tags.map((tag, index) => <span className="single-tag" key={index}>{tag.fields.name}</span>)}
+                {tags.map((tag:any, index:number) => <span className="single-tag" key={index}>{tag.fields.name}</span>)}
               </div>
             )}
             {description && <div className="single-description" dangerouslySetInnerHTML={{ __html: description }}></div>}

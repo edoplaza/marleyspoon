@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import styled from '@emotion/styled'
 
-function Header() {
+const Header = () =>  {
   return (
     <HeaderStyled>
       <div className="header-inner container">

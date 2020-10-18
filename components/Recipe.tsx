@@ -7,11 +7,20 @@ type RecipeProps = {
   title: string,
   photo: string,
   alt: string,
-  tags: [],
-  chef: string
+  tags?: {
+    fields: {
+      name: string
+    }
+  }[],
+  chef?: {
+    fields: {
+      name: string
+    }
+  };
 }
 
 const Recipe = ({ id, title, photo, alt, tags, chef }: RecipeProps) => {
+
   return (
     <RecipeStyled>
       <Link href="/recipes/[id]" as={`/recipes/${id}`}>
@@ -24,12 +33,11 @@ const Recipe = ({ id, title, photo, alt, tags, chef }: RecipeProps) => {
         <a className="recipe-title">{title}</a>
       </Link>
       {chef && <h3 className="recipe-chef">By {chef.fields.name}</h3>}
-      { tags && ( 
+      {tags && (
         <div className="recipe-tags">
-          {tags.map((tag, index) => <span className="recipe-tag" key={index}>{tag.fields.name}</span>)}
-        </div> 
-        )
-      }
+          {tags.map((tag:any, index:number) => <span className="recipe-tag" key={index}>{tag.fields.name}</span>)}
+        </div>
+      )}
         
       </div>
     </RecipeStyled>
@@ -40,7 +48,6 @@ const RecipeStyled = styled.div`
   margin: 0 0 ${rem(20)} 0;
   background: white;
   border-radius: 4px;
-
   .recipe-image {
     width: 100%;
     display: block;
