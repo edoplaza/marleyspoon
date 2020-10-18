@@ -40,7 +40,6 @@ const RecipeStyled = styled.div`
       height: 100%;
     }
   }
-  
   .recipe-info {
     padding: ${rem(20)};
   }
@@ -75,9 +74,6 @@ const RecipeStyled = styled.div`
     text-transform: uppercase;
     letter-spacing: 2px;
   }
-  
-  
-  
 `
 
 

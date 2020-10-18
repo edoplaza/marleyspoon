@@ -1,12 +1,15 @@
+import Link from 'next/link'
 import styled from '@emotion/styled'
 
 function Header() {
   return (
     <HeaderStyled>
       <div className="header-inner container">
+      <Link href="/">
         <div className="logo">
-          <img src="/images/logo.svg" alt="Main Logo"/>
+          <img src="/images/logo.svg" alt="Logo"/>
         </div>
+      </Link>
       </div>
     </HeaderStyled>
   )
@@ -22,6 +25,7 @@ const HeaderStyled = styled.header`
   .logo {
     display: flex;
     align-items: center;
+    cursor: pointer;
   }
 `
 

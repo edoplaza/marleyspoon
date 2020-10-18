@@ -356,7 +356,7 @@ const GlobalStyles = () => (
           cursor: pointer;
 				}
 				.container {
-          max-width: 960px;
+          max-width: 1140px;
           width: 100%;
           margin: 0 auto;
           padding: 30px;
