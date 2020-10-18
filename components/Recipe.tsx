@@ -2,12 +2,21 @@ import Link from 'next/link'
 import styled from '@emotion/styled'
 import { rem } from 'polished'
 
-function Post({ id, title, photo, tags, chef }) {
+type RecipeProps = {
+  id: string,
+  title: string,
+  photo: string,
+  alt: string,
+  tags: [],
+  chef: string
+}
+
+const Recipe = ({ id, title, photo, alt, tags, chef }: RecipeProps) => {
   return (
     <RecipeStyled>
       <Link href="/recipes/[id]" as={`/recipes/${id}`}>
         <a className="recipe-image">
-          <img src={photo.fields.file.url} alt={photo.fields.file.fileName}/>
+          <img src={photo} alt={alt}/>
         </a>
       </Link>
       <div className="recipe-info">
@@ -30,10 +39,13 @@ function Post({ id, title, photo, tags, chef }) {
 const RecipeStyled = styled.div`
   margin: 0 0 ${rem(20)} 0;
   background: white;
+  border-radius: 4px;
 
   .recipe-image {
     width: 100%;
     display: block;
+    border-radius: 4px 4px 0 0;
+    overflow: hidden;
     img {
       object-fit: cover;
       width: 100%;
@@ -77,4 +89,4 @@ const RecipeStyled = styled.div`
 `
 
 
-export default Post
+export default Recipe

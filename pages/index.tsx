@@ -9,13 +9,13 @@ function Home() {
   async function fetchEntries() {
     const entries = await client.getEntries( {content_type: 'recipe', include: 1})
     if (entries.items) return entries.items
-    console.log(`Error getting Entries for ${contentType.name}.`)
+    console.log(`Error getting Entries.`)
   }
-  const [recipes, setRecipes] = useState([])
+  const [recipes, setRecipes] = useState<any[]>([])
 
   useEffect(() => {
     async function getRecipes() {
-      const allRecipes = await fetchEntries()
+      const allRecipes: [] = await fetchEntries()
       setRecipes([...allRecipes])
     }
     getRecipes()
@@ -34,7 +34,8 @@ function Home() {
                 key={recipe.sys.id}
                 id={recipe.sys.id}
                 title={recipe.fields.title}
-                photo={recipe.fields.photo}
+                photo={recipe.fields.photo.fields.file.url}
+                alt = {recipe.fields.photo.fields.file.fileName}
                 tags={recipe.fields.tags}
                 chef={recipe.fields.chef}
               />

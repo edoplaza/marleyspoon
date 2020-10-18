@@ -74,9 +74,7 @@ function Recipe() {
                 {tags.map((tag, index) => <span className="single-tag" key={index}>{tag.fields.name}</span>)}
               </div>
             )}
-
             {description && <div className="single-description" dangerouslySetInnerHTML={{ __html: description }}></div>}
-           
             </div>
         </div>
     </SingleStyled>
@@ -87,13 +85,13 @@ function Recipe() {
 const SingleStyled = styled.div`
   background: #f3f3f3;
   .single-inner {
-   
+    overflow: hidden;
   }
 
   .single-image {
+    border-radius: 4px 4px 0 0;
     width: 100%;
-    display: block;
-    height: 400px;
+    max-height: 450px;
     overflow: hidden;
     img {
       object-fit: cover;
@@ -106,6 +104,7 @@ const SingleStyled = styled.div`
     background: white;
     padding: ${rem(20)};
     padding-top: ${rem(40)};
+    border-radius: 0 0 4px 4px;
     
   }
   .single-title {

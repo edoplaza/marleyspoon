@@ -1,7 +1,11 @@
 import Header from '../components/Header'
 import GlobalStyles from '../components/GlobalStyles/GlobalStyles';
 
-function MyApp({ Component, pageProps }) {
+type AppProps = {
+  pageProps: any,
+  Component: any
+}
+const App = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <GlobalStyles/>
@@ -11,4 +15,4 @@ function MyApp({ Component, pageProps }) {
   )
 }
 
-export default MyApp
+export default App
