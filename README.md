@@ -24,7 +24,7 @@ This is a simple excercise which follows this list of requirements:
 - polished
 - Content Delivery API
 
-### Build instructions:
+### Run instructions:
 
 - Clone repository
 - yarn dev / yarn build / yarn start
