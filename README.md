@@ -1,4 +1,4 @@
-# Marley Spoon Technical Excercise
+# Marley Spoon Technical Exercise
 
 This is a simple excercise which follows this list of requirements:
 
