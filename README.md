@@ -23,3 +23,9 @@ This is a simple excercise which follows this list of requirements:
 - emotion
 - polished
 - Content Delivery API
+
+### Build instructions:
+
+- Clone repository
+- yarn dev / yarn build / yarn start
+- The .env.local file is exceptionally available on this repo so it can be tested locally
