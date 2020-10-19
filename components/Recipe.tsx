@@ -1,48 +1,50 @@
-import Link from 'next/link'
-import styled from '@emotion/styled'
-import { rem } from 'polished'
+import Link from "next/link";
+import styled from "@emotion/styled";
+import { rem } from "polished";
 
 type RecipeProps = {
-  id: string,
-  title: string,
-  photo: string,
-  alt: string,
+  id: string;
+  title: string;
+  photo: string;
+  alt: string;
   tags?: {
     fields: {
-      name: string
-    }
-  }[],
+      name: string;
+    };
+  }[];
   chef?: {
     fields: {
-      name: string
-    }
+      name: string;
+    };
   };
-}
+};
 
 const Recipe = ({ id, title, photo, alt, tags, chef }: RecipeProps) => {
-
   return (
     <RecipeStyled>
       <Link href="/recipes/[id]" as={`/recipes/${id}`}>
         <a className="recipe-image">
-          <img src={photo} alt={alt}/>
+          <img src={photo} alt={alt} />
         </a>
       </Link>
       <div className="recipe-info">
-      <Link href="/recipes/[id]" as={`/recipes/${id}`}>
-        <a className="recipe-title">{title}</a>
-      </Link>
-      {chef && <h3 className="recipe-chef">By {chef.fields.name}</h3>}
-      {tags && (
-        <div className="recipe-tags">
-          {tags.map((tag:any, index:number) => <span className="recipe-tag" key={index}>{tag.fields.name}</span>)}
-        </div>
-      )}
-        
+        <Link href="/recipes/[id]" as={`/recipes/${id}`}>
+          <a className="recipe-title">{title}</a>
+        </Link>
+        {chef && <h3 className="recipe-chef">By {chef.fields.name}</h3>}
+        {tags && (
+          <div className="recipe-tags">
+            {tags.map((tag: any, index: number) => (
+              <span className="recipe-tag" key={index}>
+                {tag.fields.name}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
     </RecipeStyled>
-  )
-}
+  );
+};
 
 const RecipeStyled = styled.div`
   margin: 0 0 ${rem(20)} 0;
@@ -89,11 +91,10 @@ const RecipeStyled = styled.div`
     padding: ${rem(5)};
     background: #f4f4f4;
     text-align: center;
-    margin: 0 ${rem(10)} 0 0 ;
+    margin: 0 ${rem(10)} 0 0;
     text-transform: uppercase;
     letter-spacing: 2px;
   }
-`
+`;
 
-
-export default Recipe
+export default Recipe;

@@ -1,64 +1,64 @@
-import { useEffect, useState } from 'react'
-import Head from 'next/head'
+import { useEffect, useState } from "react";
+import Head from "next/head";
 import { useRouter } from "next/router";
-import client from '../api/contentful';
-import styled from '@emotion/styled'
-import { rem } from 'polished'
+import client from "../api/contentful";
+import styled from "@emotion/styled";
+import { rem } from "polished";
 
 interface TagContent {
   fields: {
-    name: string
-  }
+    name: string;
+  };
 }
-interface Tag extends Array<TagContent>{}
+interface Tag extends Array<TagContent> {}
 
 const Recipe = () => {
   let router = useRouter();
-  const [counter, setCounter] = useState<number>(0)
-  const [title, setTitle] = useState<string>('')
-  const [tags, setTags] = useState<Tag>([])
-  const [photo, setPhoto] = useState<string>('')
-  const [description, setDescription] = useState<string>('')
-  const [chef, setChef] = useState<string>('');
+  const [counter, setCounter] = useState<number>(0);
+  const [title, setTitle] = useState<string>("");
+  const [tags, setTags] = useState<Tag>([]);
+  const [photo, setPhoto] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  const [chef, setChef] = useState<string>("");
 
   async function getRecipe() {
     let value = await router.query.id;
     if (value) {
       let entry = await client.getEntries({
-        'sys.id' : value,
-        content_type: 'recipe', 
-        include: 1
-      })
-        if (entry) {
-          setCounter(counter + 1)
-          if (entry.items[0].fields.title !== undefined) {
-            setTitle(entry.items[0].fields.title)
-          }
-          if (entry.items[0].fields.tags !== undefined ) {
-            setTags(entry.items[0].fields.tags) 
-          }
-          if (entry.items[0].fields.photo.fields.file.url !== undefined) {
-            setPhoto(entry.items[0].fields.photo.fields.file.url)
-          }
-          if (entry.items[0].fields.description !== undefined) {
-            setDescription(entry.items[0].fields.description)
-          }
-          if (entry.items[0].fields.chef !== undefined) {
-            setChef(entry.items[0].fields.chef.fields.name)
-          }
+        "sys.id": value,
+        content_type: "recipe",
+        include: 1,
+      });
+      if (entry) {
+        setCounter(counter + 1);
+        if (entry.items[0].fields.title !== undefined) {
+          setTitle(entry.items[0].fields.title);
+        }
+        if (entry.items[0].fields.tags !== undefined) {
+          setTags(entry.items[0].fields.tags);
+        }
+        if (entry.items[0].fields.photo.fields.file.url !== undefined) {
+          setPhoto(entry.items[0].fields.photo.fields.file.url);
+        }
+        if (entry.items[0].fields.description !== undefined) {
+          setDescription(entry.items[0].fields.description);
+        }
+        if (entry.items[0].fields.chef !== undefined) {
+          setChef(entry.items[0].fields.chef.fields.name);
+        }
       } else {
-        console.log('error')
+        console.log("error");
       }
     } else {
-      console.log('no value')
+      console.log("no value");
     }
-  };
+  }
 
   useEffect(() => {
     if (counter < 1) {
-      getRecipe()
+      getRecipe();
     }
-  })
+  });
 
   return (
     <>
@@ -69,25 +69,34 @@ const Recipe = () => {
         <div className="single-inner container">
           {photo && (
             <div className="single-image">
-              <img src={photo} alt={title}/>
+              <img src={photo} alt={title} />
             </div>
           )}
           <div className="single-info">
             {title && <h1 className="single-title">{title}</h1>}
             {chef && <h3 className="single-chef">By {chef}</h3>}
-         
+
             {tags.length !== 0 && (
               <div className="single-tags">
-                {tags.map((tag:any, index:number) => <span className="single-tag" key={index}>{tag.fields.name}</span>)}
+                {tags.map((tag: any, index: number) => (
+                  <span className="single-tag" key={index}>
+                    {tag.fields.name}
+                  </span>
+                ))}
               </div>
             )}
-            {description && <div className="single-description" dangerouslySetInnerHTML={{ __html: description }}></div>}
-            </div>
+            {description && (
+              <div
+                className="single-description"
+                dangerouslySetInnerHTML={{ __html: description }}
+              ></div>
+            )}
+          </div>
         </div>
-    </SingleStyled>
+      </SingleStyled>
     </>
-  )
-}
+  );
+};
 
 const SingleStyled = styled.div`
   background: #f3f3f3;
@@ -106,13 +115,12 @@ const SingleStyled = styled.div`
       height: 100%;
     }
   }
-  
+
   .single-info {
     background: white;
     padding: ${rem(20)};
     padding-top: ${rem(40)};
     border-radius: 0 0 4px 4px;
-    
   }
   .single-title {
     font-size: ${rem(26)};
@@ -121,7 +129,7 @@ const SingleStyled = styled.div`
     color: black;
     font-weight: 500;
   }
-  
+
   .single-chef {
     font-size: ${rem(16)};
     font-weight: 500;
@@ -138,7 +146,7 @@ const SingleStyled = styled.div`
     padding: ${rem(5)};
     background: #f4f4f4;
     text-align: center;
-    margin: 0 ${rem(10)} 0 0 ;
+    margin: 0 ${rem(10)} 0 0;
     text-transform: uppercase;
     letter-spacing: 2px;
   }
@@ -150,6 +158,6 @@ const SingleStyled = styled.div`
     font-weight: 400;
     color: #666666;
   }
-  `
+`;
 
-export default Recipe
+export default Recipe;

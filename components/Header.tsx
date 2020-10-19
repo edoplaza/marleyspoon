@@ -1,19 +1,19 @@
-import Link from 'next/link'
-import styled from '@emotion/styled'
+import Link from "next/link";
+import styled from "@emotion/styled";
 
-const Header = () =>  {
+const Header = () => {
   return (
     <HeaderStyled>
       <div className="header-inner container">
-      <Link href="/">
-        <div className="logo">
-          <img src="/images/logo.svg" alt="Logo"/>
-        </div>
-      </Link>
+        <Link href="/">
+          <div className="logo">
+            <img src="/images/logo.svg" alt="Logo" />
+          </div>
+        </Link>
       </div>
     </HeaderStyled>
-  )
-}
+  );
+};
 
 const HeaderStyled = styled.header`
   .header-inner {
@@ -27,6 +27,6 @@ const HeaderStyled = styled.header`
     align-items: center;
     cursor: pointer;
   }
-`
+`;
 
-export default Header
+export default Header;

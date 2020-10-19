@@ -1,18 +1,18 @@
-import Header from '../components/Header'
-import GlobalStyles from '../components/GlobalStyles/GlobalStyles';
+import Header from "../components/Header";
+import GlobalStyles from "../components/GlobalStyles/GlobalStyles";
 
 type AppProps = {
-  pageProps: any,
-  Component: any
-}
+  pageProps: any;
+  Component: any;
+};
 const App = ({ Component, pageProps }: AppProps) => {
   return (
     <>
-      <GlobalStyles/>
+      <GlobalStyles />
       <Header />
       <Component {...pageProps} />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

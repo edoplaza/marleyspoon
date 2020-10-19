@@ -354,8 +354,8 @@ const GlobalStyles = () => (
         button,
         [role="button"] {
           cursor: pointer;
-				}
-				.container {
+        }
+        .container {
           max-width: 1140px;
           width: 100%;
           margin: 0 auto;
